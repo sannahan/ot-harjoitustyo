@@ -1,0 +1,121 @@
+commit c6670e760af873b93567246268cee5cc8e9909c5
+Author: sannahan <73829699+sannahan@users.noreply.github.com>
+Date:   Tue Nov 3 16:58:40 2020 +0200
+
+    Uudelleennimeä file2 file22
+
+ tiedostoja/{file2 => file22} | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 1ba7f674ef7cd37a2b89b32366725c7478ebf3c3
+Author: sannahan <73829699+sannahan@users.noreply.github.com>
+Date:   Tue Nov 3 16:58:07 2020 +0200
+
+    Poista file1
+
+ tiedostoja/file1 | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit d760a26d7f753f40eb61f4c9eb88e69118eff5b2
+Author: sannahan <73829699+sannahan@users.noreply.github.com>
+Date:   Tue Nov 3 16:39:39 2020 +0200
+
+    Lisää file1, file2 ja file3
+
+ tiedostoja/file1 | 0
+ tiedostoja/file2 | 0
+ tiedostoja/file3 | 0
+ 3 files changed, 0 insertions(+), 0 deletions(-)
+
+commit 8386c728087f24ff085d83629c399351e642b711
+Author: sannahan <73829699+sannahan@users.noreply.github.com>
+Date:   Tue Nov 3 16:31:57 2020 +0200
+
+    Muokkaa eka.txt ja kolmas.txt
+
+ eka.txt    | 3 ++-
+ kolmas.txt | 3 ++-
+ 2 files changed, 4 insertions(+), 2 deletions(-)
+
+commit dc4c4aab68fbe4e5b502f855edb7c22d5021d0e8
+Author: sannahan <73829699+sannahan@users.noreply.github.com>
+Date:   Tue Nov 3 16:28:34 2020 +0200
+
+    Muuta tiedosto.txt nimi eka.txt
+
+ tiedosto.txt => eka.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 309c8fedb1786b18da19bb6501fe4693b8ca5763
+Author: sannahan <73829699+sannahan@users.noreply.github.com>
+Date:   Tue Nov 3 16:27:23 2020 +0200
+
+    Poista toinen.txt
+
+ toinen.txt | 1 -
+ 1 file changed, 1 deletion(-)
+
+commit 533881a82937606ec10de4a96b2ce696ef6d668f
+Author: sannahan <73829699+sannahan@users.noreply.github.com>
+Date:   Tue Nov 3 16:24:22 2020 +0200
+
+    Muokkaa tiedosto.txt
+
+ tiedosto.txt | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+commit f850b9d22d618b4336f256f024fb48876eabbf84
+Author: sannahan <73829699+sannahan@users.noreply.github.com>
+Date:   Tue Nov 3 16:22:33 2020 +0200
+
+    Lisää tekstiä tiedosto.txt
+
+ tiedosto.txt | 8 ++++++++
+ 1 file changed, 8 insertions(+)
+
+commit cb0680201a491dd5bb43c744825c345eb11c39d7
+Author: sannahan <73829699+sannahan@users.noreply.github.com>
+Date:   Tue Nov 3 13:52:35 2020 +0200
+
+    lisää hakemisto stuff
+
+ stuff/fourth.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 84f0264f9663ebbe98ec7c1c9c1537e7275f5c43
+Author: sannahan <73829699+sannahan@users.noreply.github.com>
+Date:   Tue Nov 3 13:50:09 2020 +0200
+
+    muokkaa toinen.txt ja kolmas.txt
+
+ kolmas.txt | 1 +
+ toinen.txt | 1 +
+ 2 files changed, 2 insertions(+)
+
+commit 747ad677a191c4eb0a40cd3b7e73f5dd531c7fd7
+Author: sannahan <73829699+sannahan@users.noreply.github.com>
+Date:   Tue Nov 3 13:48:52 2020 +0200
+
+    lisää kolmas.txt
+
+ kolmas.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 1b991f9efb3f972035d11139ffa3fbaab5fdd0ea
+Author: sannahan <73829699+sannahan@users.noreply.github.com>
+Date:   Tue Nov 3 13:46:07 2020 +0200
+
+    muutos ja lisäys
+
+ tiedosto.txt | 1 +
+ toinen.txt   | 0
+ 2 files changed, 1 insertion(+)
+
+commit da5709fba6293397dbf29e7b67d0fbd08519698a
+Author: sannahan <73829699+sannahan@users.noreply.github.com>
+Date:   Tue Nov 3 13:42:57 2020 +0200
+
+    tiedosto.txt luotu
+
+ tiedosto.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
