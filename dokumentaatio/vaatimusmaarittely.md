@@ -4,7 +4,13 @@
 
 Sovellus sisältää sata sudokua. Käyttäjä voi vapaasti valita, minkä sudokun hän haluaa pelata.
 
+## Toimintaympäristön rajoitteet
+
+Ohjelmiston tulee olla suoritettavissa, käännettävissä ja testattavissa Linux-koneen komentoriviltä. Graafisen käyttöliittymän toteuttamiseen käytetään JavaFX:ää.
+
 ## Käyttöliittymäluonnos
+
+![Kayttoliittymaluonnos](https://raw.githubusercontent.com/sannahan/ot-harjoitustyo/master/dokumentaatio/kuvat/kayttoliittymaluonnos.jpg)
 
 ## Suunnitellut toiminnallisuudet
 
