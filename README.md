@@ -12,4 +12,6 @@ Hello! This is me *practicing* how to use **GitHub**!
 ## Viikko 2
 [alustava määrittelydokumentti](https://github.com/sannahan/ot-harjoitustyo/blob/master/dokumentaatio/vaatimusmaarittely.md)
 
+[työaikakirjanpito](https://github.com/sannahan/ot-harjoitustyo/blob/master/dokumentaatio/tyoaikakirjanpito.md)
+
 [screenshot](https://github.com/sannahan/ot-harjoitustyo/blob/master/laskarit/viikko2/jacoco_screenshot.png)
