@@ -1,17 +1,12 @@
 # Ohjelmistotekniikka, harjoitustyö
 
-## Tehtävät
+## SudokuApp
 
-## Viikko 1
-Hello! This is me *practicing* how to use **GitHub**!
+Sovelluksessa voi pelata sudokua. Sovellus toimii Helsingin yliopiston tietojenkäsittelytieteen kurssin Ohjelmistotekniikka harjoitussovelluksena.
 
-[gitlog.txt](https://github.com/sannahan/ot-harjoitustyo/blob/master/laskarit/viikko1/gitlog.txt)
-
-[komentorivi.txt](https://github.com/sannahan/ot-harjoitustyo/blob/master/laskarit/viikko1/komentorivi.txt)
-
-## Viikko 2
+###  Dokumentaatio
 [alustava määrittelydokumentti](https://github.com/sannahan/ot-harjoitustyo/blob/master/dokumentaatio/vaatimusmaarittely.md)
 
 [työaikakirjanpito](https://github.com/sannahan/ot-harjoitustyo/blob/master/dokumentaatio/tyoaikakirjanpito.md)
 
-[screenshot](https://github.com/sannahan/ot-harjoitustyo/blob/master/laskarit/viikko2/jacoco_screenshot.png)
+### Releaset
