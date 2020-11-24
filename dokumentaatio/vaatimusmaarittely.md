@@ -12,12 +12,12 @@ Ohjelmiston tulee olla suoritettavissa, käännettävissä ja testattavissa Linu
 
 ![Kayttoliittymaluonnos](https://raw.githubusercontent.com/sannahan/ot-harjoitustyo/master/dokumentaatio/kuvat/kayttoliittymaluonnos.jpg)
 
-## Suunnitellut toiminnallisuudet
+## Suunnitellut toiminnallisuudet (x = tehty)
 
 * käyttäjä näkee 10x10 ruudukon, josta hän voi valita sudokun ratkottavaksi
 * käyttäjä näkee valitsemansa sudokun
-* käyttäjä voi lisätä sudokuun numeroita (numeroita on kahta kokoa: pieni ja iso)
-* käyttäjä voi poistaa sudokuun lisäämiään numeroita
+* käyttäjä voi lisätä sudokuun numeroita (numeroita on kahta kokoa: pieni ja iso) x
+* käyttäjä voi poistaa sudokuun lisäämiään numeroita x
 * käyttäjä voi merkitä valitsemansa ruudut valitsemallaan värillä 
 * jos käyttäjä lisää sudokuun numeron, joka rikkoo pelin sääntöjä, virhe näytetään käyttäjälle
 

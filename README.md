@@ -10,3 +10,29 @@ Sovelluksessa voi pelata sudokua. Sovellus toimii Helsingin yliopiston tietojenk
 [työaikakirjanpito](https://github.com/sannahan/ot-harjoitustyo/blob/master/dokumentaatio/tyoaikakirjanpito.md)
 
 ### Releaset
+
+### Komentorivitoiminnot
+
+Projekti suoritetaan komennolla
+
+	mvn compile exec:java -Dexec.mainClass=Sudokuprojekti.ui.Main
+
+
+#### Testit
+
+Testit suoritetaan komennolla
+
+	mvn test
+
+Testikattavuusraportti luodaan komennolla
+
+	mvn test jacoco:report
+
+
+#### Checkstyle
+
+Tiedostoon checkstyle.xml määrittelemät tarkistukset suoritetaan komennolla
+
+	mvn jxr:jxr checkstyle:checkstyle
+
+Virheilmoitukset löytyvät tiedostosta target/site/checkstyle.html
