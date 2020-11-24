@@ -1,0 +1,17 @@
+.root{
+    -fx-background-color: black;
+}
+
+.button{
+    -fx-background-radius: 0;
+}
+
+#button-smallfont{
+    -fx-font-size: 10px;
+}
+
+#button-bigfont{
+    -fx-font-size: 25px;
+    -fx-text-weight: bold;
+}
+
