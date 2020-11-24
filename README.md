@@ -9,6 +9,8 @@ Sovelluksessa voi pelata sudokua. Sovellus toimii Helsingin yliopiston tietojenk
 
 [työaikakirjanpito](https://github.com/sannahan/ot-harjoitustyo/blob/master/dokumentaatio/tyoaikakirjanpito.md)
 
+[arkkitehtuuri](https://github.com/sannahan/ot-harjoitustyo/blob/master/dokumentaatio/arkkitehtuuri.md)
+
 ### Releaset
 
 ### Komentorivitoiminnot
