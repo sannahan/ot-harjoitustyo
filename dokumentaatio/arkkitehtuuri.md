@@ -6,4 +6,4 @@
 
 Numeron lisääminen sudokuun
 
-![sekvenssikaavio1]()
+![sekvenssikaavio1](https://github.com/sannahan/ot-harjoitustyo/blob/master/dokumentaatio/kuvat/sekvenssikaavio.jpg)
