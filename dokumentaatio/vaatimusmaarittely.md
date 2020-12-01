@@ -19,7 +19,7 @@ Ohjelmiston tulee olla suoritettavissa, käännettävissä ja testattavissa Linu
 * käyttäjä voi lisätä sudokuun numeroita (numeroita on kahta kokoa: pieni ja iso) x
 * käyttäjä voi poistaa sudokuun lisäämiään numeroita x
 * käyttäjä voi merkitä valitsemansa ruudut valitsemallaan värillä 
-* jos käyttäjä lisää sudokuun numeron, joka rikkoo pelin sääntöjä, virhe näytetään käyttäjälle
+* jos käyttäjä lisää sudokuun numeron, joka rikkoo pelin sääntöjä, virhe näytetään käyttäjälle x
 
 ## Jatkokehitysideoita
 

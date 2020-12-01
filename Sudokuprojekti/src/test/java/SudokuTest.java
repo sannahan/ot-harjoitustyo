@@ -14,31 +14,76 @@ public class SudokuTest {
         s = new Sudoku();
     }
     
-    /*@Test
+    @Test
+    public void setNumberSetsNumber() {
+        s.setNumber(7);
+        assertEquals(7, s.getNumber());
+    }
+    
+    @Test
+    public void setSizeSetsSize() {
+        s.setSize(true);
+        assertTrue(s.isBig());
+    }
+    
+    @Test
+    public void getNotationFromSquareReturnsCorrectString() {
+        int arraySize = s.getSudoku()[1][1].getNotation().size();
+        int stringSize = s.getNotationFromSquare(1, 1).length();
+        assertEquals(arraySize, stringSize);    
+    }
+    
+    @Test
     public void sameNumberOnRowReturnsFalse() {
-        s.setNumberToSquare(2, 3, 8);
-        s.setNumber(8);
-        assertFalse(s.checkRow(2, 4));
+        s.setNumber(7);
+        assertFalse(s.checkRow(1, 4));
+    }
+    
+    @Test
+    public void differentNumberOnRowReturnsTrue() {
+        s.setNumber(4);
+        assertTrue(s.checkRow(0,0));
     }
     
     @Test
     public void sameNumberOnColumnReturnsFalse() {
-        s.setNumberToSquare(2, 3, 8);
-        s.setNumber(8);
-        assertFalse(s.checkColumn(3, 3));
+        s.setNumber(7);
+        assertFalse(s.checkColumn(8, 1));
+    }
+    
+    @Test
+    public void differentNumberOnColumnReturnsTrue() {
+        s.setNumber(4);
+        assertTrue(s.checkColumn(0,0));
     }
     
     @Test
     public void sameNumberInBoxReturnsFalse() {
-        s.setNumberToSquare(1, 1, 8);
-        s.setNumber(8);
+        s.setNumber(7);
         assertFalse(s.checkBox(2, 2));
-    }*/
+    }
+    
+    public void differentNumberInBoxReturnsTrue() {
+        s.setNumber(4);
+        assertFalse(s.checkBox(0, 0));
+    }
     
     @Test
     public void checkSudokuReturnsTrueIfNumberIsZero() {
         s.setNumber(0);
         assertTrue(s.checkSudoku(0, 0));
+    }
+    
+    @Test
+    public void checkSudokuReturnsTrue() {
+        s.setNumber(4);
+        assertTrue(s.checkSudoku(0,0));
+    }
+    
+    @Test
+    public void checkSudokuReturnsFalse() {
+        s.setNumber(2);
+        assertFalse(s.checkSudoku(7,3));
     }
     
     @Test

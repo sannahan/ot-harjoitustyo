@@ -13,6 +13,8 @@ Sovelluksessa voi pelata sudokua. Sovellus toimii Helsingin yliopiston tietojenk
 
 ### Releaset
 
+[Viikko 5](https://github.com/sannahan/ot-harjoitustyo/releases)
+
 ### Komentorivitoiminnot
 
 Projekti suoritetaan komennolla
@@ -38,3 +40,11 @@ Tiedostoon checkstyle.xml määrittelemät tarkistukset suoritetaan komennolla
 	mvn jxr:jxr checkstyle:checkstyle
 
 Virheilmoitukset löytyvät tiedostosta target/site/checkstyle.html
+
+#### Suoritettavan jarin generointi
+
+Komento
+
+	mvn package
+
+generoi hakemistoon target suoritettavan jar-tiedoston Sudokuprojekti-1.0-SNAPSHOT.jar
