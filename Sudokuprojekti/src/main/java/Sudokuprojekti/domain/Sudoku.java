@@ -6,6 +6,7 @@ public class Sudoku {
     public Square[][] sudoku;
     public int number;
     public boolean big;
+    public ArrayList<Coordinates> conflictingCoordinates;
     
     public Sudoku() {
         this.sudoku = new Square[9][9];
@@ -14,6 +15,7 @@ public class Sudoku {
                 this.sudoku[y][x] = new Square();
             }
         }
+        this.sudoku[1][2].setNumber(1);
     }
     
     public Square[][] getSudoku() {
@@ -28,7 +30,7 @@ public class Sudoku {
         this.number = number;
     }
     
-    public boolean getSize() {
+    public boolean isBig() {
         return this.big;
     }
     
@@ -55,15 +57,24 @@ public class Sudoku {
     
     public boolean checkSudoku(int y, int x) {
         if (this.number == 0) return true;
-        if (!checkRow(y, x) || !checkColumn(y, x) || !checkBox(y, x)) {
-            return false;
+        this.conflictingCoordinates = new ArrayList<>();
+        boolean noMistake = true;
+        if (!checkRow(y, x)) {
+            noMistake = false;
         }
-        return true;
+        if (!checkColumn(y, x)) {
+            noMistake = false;
+        }
+        if (!checkBox(y, x)) {
+            noMistake = false;
+        }
+        return noMistake;
     }
     
     public boolean checkRow(int y, int x) {
         for (int i = 0; i < 9; i++) {
             if (i != x && this.sudoku[y][i].getNumber() == this.number) {
+                this.conflictingCoordinates.add(new Coordinates(y,i));
                 return false;
             }
         }
@@ -73,6 +84,7 @@ public class Sudoku {
     public boolean checkColumn(int y, int x) {
         for (int i = 0; i < 9; i++) {
             if (i != y && this.sudoku[i][x].getNumber() == this.number) {
+                this.conflictingCoordinates.add(new Coordinates(i, x));
                 return false;
             }
         }
@@ -85,10 +97,15 @@ public class Sudoku {
         for (int i = squareStartY; i < squareStartY+3; i++) {
             for (int j = squareStartX; j < squareStartX+3; j++) {
                 if ((i != y || j != x) && this.sudoku[i][j].getNumber() == this.number) {
+                    this.conflictingCoordinates.add(new Coordinates(i, j));
                     return false;
                 }
             }
         }
         return true;
+    }
+    
+    public ArrayList<Coordinates> getConflictingCoordinates() {
+        return this.conflictingCoordinates;
     }
 }

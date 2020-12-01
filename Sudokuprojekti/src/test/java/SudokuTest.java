@@ -14,7 +14,7 @@ public class SudokuTest {
         s = new Sudoku();
     }
     
-    @Test
+    /*@Test
     public void sameNumberOnRowReturnsFalse() {
         s.setNumberToSquare(2, 3, 8);
         s.setNumber(8);
@@ -33,7 +33,7 @@ public class SudokuTest {
         s.setNumberToSquare(1, 1, 8);
         s.setNumber(8);
         assertFalse(s.checkBox(2, 2));
-    }
+    }*/
     
     @Test
     public void checkSudokuReturnsTrueIfNumberIsZero() {

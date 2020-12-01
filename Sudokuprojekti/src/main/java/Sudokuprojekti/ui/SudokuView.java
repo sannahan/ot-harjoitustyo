@@ -3,17 +3,22 @@ package Sudokuprojekti.ui;
 import Sudokuprojekti.domain.*;
 import java.util.ArrayList;
 import javafx.application.Application;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 public class SudokuView extends Application {
     private Sudoku s;
+    
+    public Scene view;
+    public GridPane sudokuView;
     
     @Override
     public void init() {
@@ -26,6 +31,21 @@ public class SudokuView extends Application {
         
         VBox options = new VBox();
         
+        options.getChildren().add(createSizeSelection());
+        options.getChildren().add(createNumberGrid());
+        
+        mainView.setRight(options);
+        
+        mainView.setLeft(maintainSudokuView());
+        
+        Scene view = new Scene(mainView, 700, 500);
+        view.getStylesheets().add("SudokuStyle.css");
+        window.setTitle("Welcome to play Sudoku!");
+        window.setScene(view);
+        window.show();
+    }
+    
+    public HBox createSizeSelection() {
         HBox size = new HBox();
         Button small = new Button("Small");
         Button big = new Button("Big");
@@ -36,7 +56,10 @@ public class SudokuView extends Application {
         big.setOnAction((event) -> {
             s.setSize(true);
         });
-        
+        return size;
+    }
+    
+    public GridPane createNumberGrid() {
         GridPane numberGrid = new GridPane();
         int numberInNumberGrid = 1;
         for (int i = 1; i < 3; i++) {
@@ -54,23 +77,17 @@ public class SudokuView extends Application {
                 });
             }
         }
-        
-        options.getChildren().add(size);
-        options.getChildren().add(numberGrid);
-        
-        mainView.setRight(options);
-        
-        GridPane sudokuView = new GridPane();
+        return numberGrid;
+    }
+    
+    public GridPane maintainSudokuView() {
+        this.sudokuView = new GridPane();
         sudokuView.setVgap(0.5);
         sudokuView.setHgap(0.5);
-        Square[][] sudoku = s.getSudoku();
+        
         for (int x = 0; x < 9; x++) {
             for (int y = 0; y < 9; y++) {
-                int value = sudoku[y][x].getNumber();
                 Button b = new Button();
-                if (value != 0) {
-                    b.setText(String.valueOf(value));
-                }
                 
                 double buttonSize = 50.0;
                 b.setMinWidth(buttonSize);
@@ -78,43 +95,79 @@ public class SudokuView extends Application {
                 
                 sudokuView.add(b, x, y);
                 
+                drawSudoku();
+                
                 b.setOnAction((event) -> {
                     int currentNumber = s.getNumber();
                     int yClick = sudokuView.getRowIndex(b);
                     int xClick = sudokuView.getColumnIndex(b);
-                    if (s.getSize()) {
-                        b.setId("button-bigfont");
+                    if (s.isBig()) {
+                        s.setNumberToSquare(yClick, xClick, currentNumber);
+                        drawSudoku();
                         boolean valid = s.checkSudoku(yClick, xClick);
-                        if (valid) {
-                            s.setNumberToSquare(yClick, xClick, currentNumber);
-                            if (currentNumber == 0) b.setText(" ");
-                            else b.setText(String.valueOf(currentNumber));
-                        } else {
-                            b.setText("-1");
+                        if (!valid) {
+                            highlightMistakes(yClick, xClick);
                         }
                     } else {
-                        b.setId("button-smallfont");
-                        if (currentNumber == 0) b.setText(" ");
-                        else {
-                            s.setNotationToSquare(yClick, xClick, currentNumber);
-                            b.setText(s.getNotationFromSquare(yClick, xClick));
-                        }
+                        s.setNotationToSquare(yClick, xClick, currentNumber);
+                        drawSudoku();
                     } 
                 });
             }
         }
-        
-        mainView.setLeft(sudokuView);
-        
-        Scene view = new Scene(mainView, 700, 500);
-        view.getStylesheets().add("SudokuStyle.css");
-        window.setTitle("Welcome to play Sudoku!");
-        window.setScene(view);
-        window.show();
+        return sudokuView;
+    }
+    
+    public void drawSudoku() {
+        Square[][] sudoku = s.getSudoku();
+        for (int y = 0; y < 9; y++) {
+            for (int x = 0; x < 9; x++) {
+                int value = sudoku[y][x].getNumber();
+                ArrayList<Integer> notation = sudoku[y][x].getNotation();
+                for (Node node: sudokuView.getChildren()) {
+                    Button button = (Button) node;
+                    int xCoord = sudokuView.getColumnIndex(button);
+                    int yCoord = sudokuView.getRowIndex(button);
+                    if (yCoord == y && xCoord == x) {
+                        if (value != 0) {
+                            button.setText(String.valueOf(value));
+                            button.setId("button-bigfont");
+                        } else if (!notation.isEmpty()) {
+                            button.setText(s.getNotationFromSquare(y, x));
+                            button.setId("button-smallfont");
+                        } else {
+                            button.setText(" ");
+                            button.setId("button-bigfont");
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    public void highlightMistakes(int yClick, int xClick) {
+        Square[][] sudoku = s.getSudoku();
+        ArrayList<Coordinates> mistakes = s.getConflictingCoordinates();
+        for (Node button: sudokuView.getChildren()) {
+            for (Coordinates yx: mistakes) {
+                int columnIndex = sudokuView.getColumnIndex(button);
+                int rowIndex = sudokuView.getRowIndex(button);
+                if (columnIndex == yx.getX() || rowIndex == yx.getY()) {
+                    Button here = (Button) button;
+                    if (sudoku[rowIndex][columnIndex].getNumber() == sudoku[yClick][xClick].getNumber()) {
+                        here.setId("button-mistakefont");
+                    }
+                } 
+            }   
+        }
     }
     
     @Override
     public void stop() {
         
+    }
+    
+    public static void main(String[] args) {
+        launch(args);
     }
 }

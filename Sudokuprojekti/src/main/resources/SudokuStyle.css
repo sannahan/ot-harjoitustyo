@@ -15,3 +15,8 @@
     -fx-text-weight: bold;
 }
 
+#button-mistakefont{
+    -fx-font-size: 25px;
+    -fx-text-fill: red;
+}
+

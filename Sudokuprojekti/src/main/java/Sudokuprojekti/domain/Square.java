@@ -20,7 +20,13 @@ public class Square {
     }
 
     public void setNotation(int n) {
-        this.notation.add(n);
+        if (n == 0) {
+            this.notation.clear();
+        } else if (this.notation.contains(n)) {
+            return;
+        } else {
+            this.notation.add(n);
+        }
     }
 
     public void setNumber(int number) {
