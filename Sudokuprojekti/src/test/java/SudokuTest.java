@@ -12,6 +12,17 @@ public class SudokuTest {
     @Before
     public void setUp() {
         s = new Sudoku();
+        s.setNumberToSquare(1, 2, 1);
+        s.setNumberToSquare(5, 5, 1);
+        s.setNumberToSquare(6, 8, 1);
+        s.setNumberToSquare(3, 3, 3);
+        s.setNumberToSquare(6, 6, 3);
+        s.setNumberToSquare(2, 1, 5);
+        s.setNumberToSquare(8, 8, 9);
+        s.setNumberToSquare(4, 3, 7);
+        s.setNumberToSquare(1, 1, 7);
+        s.setNumberToSquare(7, 2, 2);
+        s.setNumberToSquare(1, 8, 6);
     }
     
     @Test

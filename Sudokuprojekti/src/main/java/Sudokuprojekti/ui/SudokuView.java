@@ -16,13 +16,16 @@ import javafx.scene.layout.VBox;
 
 public class SudokuView extends Application {
     private Sudoku s;
+    private SudokuService sudokuService;
     
     public Scene view;
     public GridPane sudokuView;
     
+    
     @Override
     public void init() {
         s = new Sudoku();
+        sudokuService = new SudokuService();
     }
     
     @Override
@@ -33,6 +36,9 @@ public class SudokuView extends Application {
         
         options.getChildren().add(createSizeSelection());
         options.getChildren().add(createNumberGrid());
+        //options.getChildren().add(createHighlighter());
+        options.getChildren().add(new Label("Choose your game!"));
+        options.getChildren().add(createSudokuSelector());
         
         mainView.setRight(options);
         
@@ -80,6 +86,44 @@ public class SudokuView extends Application {
         return numberGrid;
     }
     
+    /*public Button createHighlighter() {
+        Button b = new Button("Highlight squares");
+        b.setOnAction((event) -> {
+            if (s.isHighlight()) {
+                s.setHighlight(false);
+            } else {
+                s.setHighlight(true);
+            }
+        });
+        return b;
+    }*/
+    
+    public GridPane createSudokuSelector() {
+        GridPane sudokuSelector = new GridPane();
+        for (int y = 0; y < 3; y++) {
+            Button b = new Button();
+            if (y == 0) {
+                b.setText("Easy");
+            } else if (y == 1) {
+                b.setText("Medium");
+            } else {
+                b.setText("Hard");
+            }
+            sudokuSelector.add(b, y, 0);
+            b.setOnAction((event) -> {
+                int chosenLevel = 1;
+                if (b.getText().equals("Medium")) {
+                    chosenLevel = 2;
+                } else if (b.getText().equals("Hard")) {
+                    chosenLevel = 3;
+                }
+                this.s = sudokuService.createSudokuBase(chosenLevel);
+                drawSudoku();
+            });
+        }
+        return sudokuSelector;
+    }
+    
     public GridPane maintainSudokuView() {
         this.sudokuView = new GridPane();
         sudokuView.setVgap(0.5);
@@ -101,6 +145,11 @@ public class SudokuView extends Application {
                     int currentNumber = s.getNumber();
                     int yClick = sudokuView.getRowIndex(b);
                     int xClick = sudokuView.getColumnIndex(b);
+                    /*if (s.isHighlight()) {
+                        b.setId("square-highlighted");
+                    } else {
+                        b.setId("square-notHighlighted");
+                    }*/
                     if (s.isBig()) {
                         s.setNumberToSquare(yClick, xClick, currentNumber);
                         drawSudoku();
@@ -111,7 +160,7 @@ public class SudokuView extends Application {
                     } else {
                         s.setNotationToSquare(yClick, xClick, currentNumber);
                         drawSudoku();
-                    } 
+                    }
                 });
             }
         }

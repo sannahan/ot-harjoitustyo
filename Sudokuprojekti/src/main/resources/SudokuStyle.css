@@ -1,5 +1,5 @@
 .root{
-    -fx-background-color: black;
+    -fx-background-color: white;
 }
 
 .button{
@@ -20,3 +20,10 @@
     -fx-text-fill: red;
 }
 
+#square-highlighted{
+    -fx-background-color: yellow;
+}
+
+#square-notHighlighted{
+    -fx-background-color: white;
+}

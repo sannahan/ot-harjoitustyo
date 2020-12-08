@@ -14,8 +14,8 @@ Ohjelmiston tulee olla suoritettavissa, käännettävissä ja testattavissa Linu
 
 ## Suunnitellut toiminnallisuudet (x = tehty)
 
-* käyttäjä näkee 10x10 ruudukon, josta hän voi valita sudokun ratkottavaksi
-* käyttäjä näkee valitsemansa sudokun
+* käyttäjä näkee 10x10 ruudukon, josta hän voi valita sudokun ratkottavaksi (tätä toiminnallisuutta ei voida toteuttaa, sillä en ole löytänyt tarpeeksi copyright-vapaata materiaalia)
+* käyttäjä näkee valitsemansa sudokun x
 * käyttäjä voi lisätä sudokuun numeroita (numeroita on kahta kokoa: pieni ja iso) x
 * käyttäjä voi poistaa sudokuun lisäämiään numeroita x
 * käyttäjä voi merkitä valitsemansa ruudut valitsemallaan värillä 

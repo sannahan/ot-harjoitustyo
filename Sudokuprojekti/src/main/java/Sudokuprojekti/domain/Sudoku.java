@@ -2,12 +2,36 @@ package Sudokuprojekti.domain;
 
 import java.util.*;
 
+/**
+ * Luokka sisältää sudokun senhetkisen tilan
+ */
 public class Sudoku {
+    /**
+    * Square-olioista koostuva 9x9 matriisi
+    */
     public Square[][] sudoku;
+    /**
+    * Numero, joka sudokuun halutaan lisätä
+    */
     public int number;
+    /**
+    * Boolean, joka merkitsee, halutaanko sudokuun lisätä varsinainen numero vai muistiinpano
+    */
     public boolean big;
+    /**
+    * Boolean, joka merkitsee, halutaanko sudokuun tehdä värikorostuksia
+    */
+    public boolean highlight;
+    /**
+    * Lista, joka sisältää tiedon sääntöjen vastaisten numeroiden koordinaateista
+    */
     public ArrayList<Coordinates> conflictingCoordinates;
     
+    /** 
+    * Konstruktori luo Square-olioista koostuvan 9x9 matriisin
+    * 
+    * 
+    */
     public Sudoku() {
         this.sudoku = new Square[9][9];
         for (int y = 0; y < 9; y++) {
@@ -15,24 +39,13 @@ public class Sudoku {
                 this.sudoku[y][x] = new Square();
             }
         }
-        this.sudoku[1][2].setNumber(1);
-        this.sudoku[5][5].setNumber(1);
-        this.sudoku[6][8].setNumber(1);
-        this.sudoku[3][3].setNumber(3);
-        this.sudoku[6][6].setNumber(3);
-        this.sudoku[2][1].setNumber(5);
-        this.sudoku[8][8].setNumber(9);
-        this.sudoku[4][3].setNumber(7);
-        this.sudoku[1][1].setNumber(7);
-        this.sudoku[7][2].setNumber(2);
-        this.sudoku[1][8].setNumber(6);
         this.conflictingCoordinates = new ArrayList<>();
     }
     
     public Square[][] getSudoku() {
         return this.sudoku;
     }
-    
+
     public int getNumber() {
         return this.number;
     }
@@ -49,14 +62,45 @@ public class Sudoku {
         this.big = isBig;
     }
     
+    public boolean isHighlight() {
+        return this.highlight;
+    }
+    
+    public void setHighlight(boolean highlightSelected) {
+        this.highlight = highlightSelected;
+    }
+    
+    /**
+    * Metodi asettaa annetun numeron matriisiin
+    *
+    * @param   y   y-koordinaatti
+    * @param   x   x-koordinaatti
+    * @param   number   annettu numero
+    */
     public void setNumberToSquare(int y, int x, int number) {
         this.sudoku[y][x].setNumber(number);
     }
     
+    /**
+    * Metodi lisää annetun numeron matriisiin muistiinpanona
+    *
+    * @param   y   y-koordinaatti
+    * @param   x   x-koordinaatti
+    * @param   number   annettu numero
+    */
     public void setNotationToSquare(int y, int x, int number) {
         this.sudoku[y][x].setNotation(number);
     }
     
+    /**
+    * Metodi rakentaa matriisin tietystä Square-oliosta saatavan
+    * muistiinpanolistan merkkijonoksi
+    *
+    * @param   y   y-koordinaatti
+    * @param   x   x-koordinaatti
+    * 
+    * @return muistiin asetetut numerot merkkijonona
+    */
     public String getNotationFromSquare(int y, int x) {
         StringBuilder sb = new StringBuilder();
         ArrayList<Integer> notation = this.sudoku[y][x].getNotation();
@@ -66,6 +110,14 @@ public class Sudoku {
         return sb.toString();
     }
     
+    /**
+    * Metodi tarkistaa, onko asetettava numero sudokun sääntöjen vastainen
+    *
+    * @param   y   y-koordinaatti
+    * @param   x   x-koordinaatti
+    * 
+    * @return true, jos numeron voi asettaa ruutuun, false, jos numero on sääntöjen vastainen
+    */
     public boolean checkSudoku(int y, int x) {
         if (this.number == 0) {
             return true;
@@ -84,6 +136,14 @@ public class Sudoku {
         return noMistake;
     }
     
+    /**
+    * Metodi tarkistaa, onko samalla rivillä samaa numeroa
+    *
+    * @param   y   y-koordinaatti
+    * @param   x   x-koordinaatti
+    * 
+    * @return true, jos numeron voi asettaa riville, false, jos numeroa ei voi asettaa riville
+    */
     public boolean checkRow(int y, int x) {
         for (int i = 0; i < 9; i++) {
             if (i != x && this.sudoku[y][i].getNumber() == this.number) {
@@ -94,6 +154,14 @@ public class Sudoku {
         return true;
     }
     
+    /**
+    * Metodi tarkistaa, onko samassa sarakkeessa samaa numeroa
+    *
+    * @param   y   y-koordinaatti
+    * @param   x   x-koordinaatti
+    * 
+    * @return true, jos numeron voi asettaa sarakkeeseen, false, jos numeroa ei voi asettaa sarakkeeseen
+    */
     public boolean checkColumn(int y, int x) {
         for (int i = 0; i < 9; i++) {
             if (i != y && this.sudoku[i][x].getNumber() == this.number) {
@@ -104,6 +172,14 @@ public class Sudoku {
         return true;
     }
     
+    /**
+    * Metodi tarkastaa, onko samassa 3x3 ruudukossa samaa numeroa
+    *
+    * @param   y   y-koordinaatti
+    * @param   x   x-koordinaatti
+    * 
+    * @return true, jos numeron voi asettaa ruutuun, false, jos numeroa ei voi asettaa ruutuun
+    */
     public boolean checkBox(int y, int x) {
         int squareStartY = y - (y % 3);
         int squareStartX = x - (x % 3);
