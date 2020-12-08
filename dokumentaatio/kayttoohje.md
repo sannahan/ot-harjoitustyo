@@ -4,7 +4,7 @@
 
 Voit valita haluamasi vaikeusasteen oikeasta valintapalkista. Sinulla on kolme vaihtoehtoa: helppo, keskivaikea ja vaikea sudoku. Saat pelin näkyviin klikkaamalla sopivaa vaikeusastetta.
 
-![][()
+![choosegame](https://github.com/sannahan/ot-harjoitustyo/blob/master/dokumentaatio/kuvat/choosegame.png)
 
 ## Numeron lisääminen ruutuun
 
@@ -14,7 +14,7 @@ Kun haluat lisätä sudokuun ison numeron, valitse oikeasta valintapalkista "Big
 
 Jos lisäät sudokuun numeron, joka sotii sen sääntöjä vastaan, sovellus merkitsee virheen aiheuttavat numerot punaisella värillä. Sudokussa ei saa olla kahta samaa numeroa samalla rivillä, samassa sarakkeessa tai 3x3 ruudukossa.
 
-![]()
+![showmistake](https://github.com/sannahan/ot-harjoitustyo/blob/master/dokumentaatio/kuvat/showmistake.png)
 
 ## Muistiinpanon lisääminen ruutuun
 
