@@ -19,8 +19,7 @@ public class FileSudokuDao {
     */
     public int[][] readValues(String filename, int chosen) {
         int[][] sudokuValues = new int[9][9];
-        try {
-            Scanner reader = new Scanner(new File(filename));
+        try (Scanner reader = new Scanner(new File(filename))) {
             while (reader.hasNextLine()) {
                 String[] values = reader.nextLine().split(";");
                 if (Integer.valueOf(values[0]) == chosen) {
@@ -35,7 +34,6 @@ public class FileSudokuDao {
             }
             return sudokuValues;
         } catch (Exception e) {
-            System.out.println("Tapahtui virhe!");
             return null;
         }
     }  
