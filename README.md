@@ -11,9 +11,12 @@ Sovelluksessa voi pelata sudokua. Sovellus toimii Helsingin yliopiston tietojenk
 
 [arkkitehtuuri](https://github.com/sannahan/ot-harjoitustyo/blob/master/dokumentaatio/arkkitehtuuri.md)
 
+[käyttöohje](https://github.com/sannahan/ot-harjoitustyo/blob/master/dokumentaatio/kayttoohje.md)
 ### Releaset
 
 [Viikko 5](https://github.com/sannahan/ot-harjoitustyo/releases)
+
+[Viikko 6](https://github.com/sannahan/ot-harjoitustyo/releases/tag/viikko6)
 
 ### Komentorivitoiminnot
 
@@ -48,3 +51,9 @@ Komento
 	mvn package
 
 generoi hakemistoon target suoritettavan jar-tiedoston Sudokuprojekti-1.0-SNAPSHOT.jar
+
+#### JavaDocin generointi
+
+JavaDoc voidaan generoida komennolla
+
+	mvn javadoc:javadoc
