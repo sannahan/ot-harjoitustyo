@@ -3,6 +3,7 @@ package Sudokuprojekti.ui;
 import Sudokuprojekti.domain.*;
 import java.util.ArrayList;
 import javafx.application.Application;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -13,6 +14,7 @@ import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
 
 public class SudokuView extends Application {
     private Sudoku s;
@@ -156,6 +158,8 @@ public class SudokuView extends Application {
                         boolean valid = s.checkSudoku(yClick, xClick);
                         if (!valid) {
                             highlightMistakes(yClick, xClick);
+                        } else {
+                            if (s.win()) congratulationsPopup();
                         }
                     } else {
                         s.setNotationToSquare(yClick, xClick, currentNumber);
@@ -209,6 +213,22 @@ public class SudokuView extends Application {
                 } 
             }   
         }
+    }
+    
+    public void congratulationsPopup() {
+        Stage congratulationsWindow = new Stage();
+        VBox layout = new VBox(10);
+        Button close = new Button("Close");
+        close.setOnAction((event) -> {
+            congratulationsWindow.close();
+        });
+        layout.getChildren().addAll(new Label("You have finished the game successfully!"), close);
+        layout.setAlignment(Pos.CENTER);
+        congratulationsWindow.initModality(Modality.APPLICATION_MODAL);
+        congratulationsWindow.setTitle("Congratulations!");
+        Scene scene = new Scene(layout, 300, 250);
+        congratulationsWindow.setScene(scene);
+        congratulationsWindow.showAndWait();
     }
     
     @Override

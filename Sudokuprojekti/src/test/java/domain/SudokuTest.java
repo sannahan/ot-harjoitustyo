@@ -1,3 +1,5 @@
+package domain;
+
 import Sudokuprojekti.domain.*;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -23,6 +25,7 @@ public class SudokuTest {
         s.setNumberToSquare(1, 1, 7);
         s.setNumberToSquare(7, 2, 2);
         s.setNumberToSquare(1, 8, 6);
+        s.setNumberToSquare(2, 4, 1);
     }
     
     @Test
@@ -86,15 +89,15 @@ public class SudokuTest {
     }
     
     @Test
-    public void checkSudokuReturnsTrue() {
-        s.setNumber(4);
-        assertTrue(s.checkSudoku(0,0));
+    public void checkSudokuReturnsTrueIfRowColumnAndBoxCheckReturnTrue() {
+        s.setNumber(1);
+        assertTrue(s.checkSudoku(8,3));
     }
     
     @Test
-    public void checkSudokuReturnsFalse() {
-        s.setNumber(2);
-        assertFalse(s.checkSudoku(7,3));
+    public void checkSudokuReturnsFalseIfRowColumnOrBoxCheckReturnFalse() {
+        s.setNumber(1);
+        assertFalse(s.checkSudoku(1,5));
     }
     
     @Test

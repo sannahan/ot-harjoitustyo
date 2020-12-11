@@ -1,3 +1,5 @@
+package domain;
+
 import Sudokuprojekti.domain.*;
 import org.junit.After;
 import org.junit.AfterClass;

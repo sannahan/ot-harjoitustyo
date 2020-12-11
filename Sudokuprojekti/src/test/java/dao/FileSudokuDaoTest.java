@@ -1,3 +1,5 @@
+package dao;
+
 import Sudokuprojekti.domain.*;
 import Sudokuprojekti.dao.*;
 import org.junit.After;
