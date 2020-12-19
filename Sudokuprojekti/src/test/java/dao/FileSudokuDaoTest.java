@@ -1,7 +1,6 @@
 package dao;
 
-import Sudokuprojekti.domain.*;
-import Sudokuprojekti.dao.*;
+import sudokuprojekti.dao.FileSudokuDao;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;

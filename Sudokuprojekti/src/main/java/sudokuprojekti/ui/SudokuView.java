@@ -1,18 +1,25 @@
-package Sudokuprojekti.ui;
+package sudokuprojekti.ui;
 
-import Sudokuprojekti.domain.*;
+import sudokuprojekti.domain.Sudoku;
+import sudokuprojekti.domain.Coordinates;
+import sudokuprojekti.domain.Square;
+import sudokuprojekti.domain.SudokuService;
+import javafx.scene.image.Image;
 import java.util.ArrayList;
 import javafx.application.Application;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 
@@ -34,19 +41,27 @@ public class SudokuView extends Application {
     public void start(Stage window) {
         BorderPane mainView = new BorderPane();
         
-        VBox options = new VBox();
+        VBox options = new VBox(10);
         
         options.getChildren().add(createSizeSelection());
         options.getChildren().add(createNumberGrid());
-        //options.getChildren().add(createHighlighter());
+        options.getChildren().add(createHighlighter());
         options.getChildren().add(new Label("Choose your game!"));
         options.getChildren().add(createSudokuSelector());
-        
+        options.getChildren().add(new Label("Find your saved games below!"));
+        options.getChildren().add(createGridForSavedSudokus());
+        options.getChildren().add(createSudokuSaver());
+
         mainView.setRight(options);
         
-        mainView.setLeft(maintainSudokuView());
+        Image grid = new Image("file:black.png", 500, 500, false, false);
+        ImageView iv = new ImageView(grid);
+        StackPane sp = new StackPane();
+        sp.getChildren().addAll(iv, maintainSudokuView());
+        mainView.setLeft(sp);
+        //mainView.setLeft(maintainSudokuView());
         
-        Scene view = new Scene(mainView, 700, 500);
+        Scene view = new Scene(mainView, 800, 515);
         view.getStylesheets().add("SudokuStyle.css");
         window.setTitle("Welcome to play Sudoku!");
         window.setScene(view);
@@ -73,6 +88,7 @@ public class SudokuView extends Application {
         for (int i = 1; i < 3; i++) {
             for (int j = 1; j < 6; j++) {
                 Button b = new Button();
+                b.setMinSize(35, 35);
                 if (numberInNumberGrid == 10) b.setText("X");
                 else b.setText(String.valueOf(numberInNumberGrid));
                 numberGrid.add(b, j, i);
@@ -88,17 +104,21 @@ public class SudokuView extends Application {
         return numberGrid;
     }
     
-    /*public Button createHighlighter() {
-        Button b = new Button("Highlight squares");
-        b.setOnAction((event) -> {
-            if (s.isHighlight()) {
-                s.setHighlight(false);
-            } else {
-                s.setHighlight(true);
-            }
+    public HBox createHighlighter() {
+        HBox highlightSelector = new HBox();
+        Button highlight = new Button("Highlight squares");
+        highlight.setOnAction((event) -> {
+            s.setHighlight(true);
         });
-        return b;
-    }*/
+        Button unhighlight = new Button("Unhighlight all");
+        unhighlight.setOnAction((event) -> {
+            s.setHighlight(false);
+            s.unhighlight();
+            drawSudoku();
+        });
+        highlightSelector.getChildren().addAll(highlight, unhighlight);
+        return highlightSelector;
+    }
     
     public GridPane createSudokuSelector() {
         GridPane sudokuSelector = new GridPane();
@@ -126,10 +146,47 @@ public class SudokuView extends Application {
         return sudokuSelector;
     }
     
+    public HBox createSudokuSaver() {
+        HBox sudokuSaver = new HBox();
+        Button save = new Button("Save");
+        save.setOnAction((event) -> {
+            sudokuService.saveSudoku(s.getSudoku());
+        });
+        sudokuSaver.getChildren().add(save);
+        return sudokuSaver;
+    }
+    
+    public GridPane createGridForSavedSudokus() {
+        GridPane saved = new GridPane();
+        int number = 1;
+        for (int x = 0; x < 5; x++) {
+            for (int y = 0; y < 5; y++) {
+                Button b = new Button(String.valueOf(number));
+                b.setMinSize(35, 35);
+                int index = number;
+                b.setOnAction((event) -> {
+                    if (sudokuService.isSudokuInMemory(index)) {
+                        s = sudokuService.createSudokuBase(index+3);
+                        drawSudoku();
+                        b.setId("selectedSudoku");
+                    } else {
+                        s = sudokuService.getSudokuFromIndex(index+3);
+                        drawSudoku();
+                    }
+                });
+                saved.add(b, y, x);
+                number++;
+            }
+        }
+        
+        return saved;
+    }
+    
     public GridPane maintainSudokuView() {
         this.sudokuView = new GridPane();
-        sudokuView.setVgap(0.5);
-        sudokuView.setHgap(0.5);
+        sudokuView.setVgap(3);
+        sudokuView.setHgap(3);
+        sudokuView.setPadding(new Insets(15, 10, 10, 10));
         
         for (int x = 0; x < 9; x++) {
             for (int y = 0; y < 9; y++) {
@@ -139,6 +196,21 @@ public class SudokuView extends Application {
                 b.setMinWidth(buttonSize);
                 b.setMinHeight(buttonSize);
                 
+                if (x == 3 && y == 3) {
+                    sudokuView.setMargin(b, new Insets(5, 0, 0, 5));
+                } else if (x == 3 && y == 6) {
+                    sudokuView.setMargin(b, new Insets(5, 0, 0, 5));
+                } else if (x == 6 && y == 3) {
+                    sudokuView.setMargin(b, new Insets(5, 0, 0, 5));
+                } else if (x == 6 && y == 6) {
+                    sudokuView.setMargin(b, new Insets(5, 0, 0, 5));
+                } else if (x == 3 || x == 6) {
+                    sudokuView.setMargin(b, new Insets(0, 0, 0, 5));
+                } else if (y == 3 || y == 6) {
+                    sudokuView.setMargin(b, new Insets(5, 0, 0, 0));
+
+                }
+                
                 sudokuView.add(b, x, y);
                 
                 drawSudoku();
@@ -147,17 +219,21 @@ public class SudokuView extends Application {
                     int currentNumber = s.getNumber();
                     int yClick = sudokuView.getRowIndex(b);
                     int xClick = sudokuView.getColumnIndex(b);
-                    /*if (s.isHighlight()) {
-                        b.setId("square-highlighted");
-                    } else {
-                        b.setId("square-notHighlighted");
-                    }*/
+                    if (s.isHighlight() && s.getSudoku()[yClick][xClick].getNumber() == 0) {
+                        s.setNumberToSquare(yClick, xClick, -2);
+                        drawSudoku();
+                        return;
+                    }
                     if (s.isBig()) {
-                        s.setNumberToSquare(yClick, xClick, currentNumber);
+                        if (!s.isOriginalNumberCoordinates(yClick, xClick)) {
+                            s.setNumberToSquare(yClick, xClick, currentNumber);
+                        }
                         drawSudoku();
                         boolean valid = s.checkSudoku(yClick, xClick);
                         if (!valid) {
-                            highlightMistakes(yClick, xClick);
+                            if (!s.isOriginalNumberCoordinates(yClick, xClick)) {
+                                highlightMistakes(yClick, xClick);
+                            }
                         } else {
                             if (s.win()) congratulationsPopup();
                         }
@@ -182,9 +258,16 @@ public class SudokuView extends Application {
                     int xCoord = sudokuView.getColumnIndex(button);
                     int yCoord = sudokuView.getRowIndex(button);
                     if (yCoord == y && xCoord == x) {
-                        if (value != 0) {
+                        if (value == -2) {
+                            button.setId("square-highlighted");
+                        } else if (value != 0) {
                             button.setText(String.valueOf(value));
-                            button.setId("button-bigfont");
+                            if (s.isOriginalNumberCoordinates(yCoord, xCoord)) {
+                                button.setId("button-bigfontWithColor");
+                            }
+                            else {
+                                button.setId("button-bigfont");
+                            }
                         } else if (!notation.isEmpty()) {
                             button.setText(s.getNotationFromSquare(y, x));
                             button.setId("button-smallfont");

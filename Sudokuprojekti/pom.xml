@@ -27,7 +27,7 @@
                 <configuration>
                     <release>${maven.compiler.release}</release>
                     <launcher>launcher</launcher>
-                    <mainClass>Sudokuprojekti.ui.Main</mainClass>
+                    <mainClass>sudokuprojekti.ui.Main</mainClass>
                 </configuration>
             </plugin>
             <plugin>
@@ -36,7 +36,7 @@
                 <version>0.8.3</version>
                 <configuration>
                     <excludes>
-                        <exclude>Sudokuprojekti/ui/*</exclude>
+                        <exclude>sudokuprojekti.ui*</exclude>
                     </excludes>
                 </configuration>
                 <executions>
@@ -82,7 +82,7 @@
                         <configuration>
                             <transformers>
                                 <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                                    <mainClass>Sudokuprojekti.ui.Main</mainClass>
+                                    <mainClass>sudokuprojekti.ui.Main</mainClass>
                                 </transformer>
                             </transformers>
                         </configuration>

@@ -8,16 +8,25 @@
 
 #button-smallfont{
     -fx-font-size: 10px;
+    -fx-background-color: white;
 }
 
 #button-bigfont{
     -fx-font-size: 25px;
     -fx-text-weight: bold;
+    -fx-background-color: white;
+}
+
+#button-bigfontWithColor{
+    -fx-font-size: 25px;
+    -fx-text-weight: bold;
+    -fx-background-color: lightgray;
 }
 
 #button-mistakefont{
     -fx-font-size: 25px;
     -fx-text-fill: red;
+    -fx-background-color: white;
 }
 
 #square-highlighted{
@@ -26,4 +35,8 @@
 
 #square-notHighlighted{
     -fx-background-color: white;
+}
+
+#selectedSudoku{
+    -fx-background-color: lightgreen;
 }

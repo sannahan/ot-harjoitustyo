@@ -1,35 +1,20 @@
-package Sudokuprojekti.domain;
+package sudokuprojekti.domain;
 
 import java.util.*;
 
 /**
- * Luokka sisältää sudokun senhetkisen tilan
+ * Luokka sisältää sudokun tämänhetkisen tilan
  */
 public class Sudoku {
-    /**
-    * Square-olioista koostuva 9x9 matriisi
-    */
-    public Square[][] sudoku;
-    /**
-    * Numero, joka sudokuun halutaan lisätä
-    */
-    public int number;
-    /**
-    * Boolean, joka merkitsee, halutaanko sudokuun lisätä varsinainen numero vai muistiinpano
-    */
-    public boolean big;
-    /**
-    * Boolean, joka merkitsee, halutaanko sudokuun tehdä värikorostuksia
-    */
-    public boolean highlight;
-    /**
-    * Lista, joka sisältää tiedon sääntöjen vastaisten numeroiden koordinaateista
-    */
-    public ArrayList<Coordinates> conflictingCoordinates;
+    private Square[][] sudoku;
+    private int number;
+    private boolean big;
+    private boolean highlight;
+    private ArrayList<Coordinates> conflictingCoordinates;
+    private ArrayList<Coordinates> originalNumbersCoordinates;
     
     /** 
     * Konstruktori luo Square-olioista koostuvan 9x9 matriisin
-    * 
     * 
     */
     public Sudoku() {
@@ -40,6 +25,7 @@ public class Sudoku {
             }
         }
         this.conflictingCoordinates = new ArrayList<>();
+        this.originalNumbersCoordinates = new ArrayList<>();
     }
     
     public Square[][] getSudoku() {
@@ -70,6 +56,44 @@ public class Sudoku {
         this.highlight = highlightSelected;
     }
     
+    public ArrayList<Coordinates> getConflictingCoordinates() {
+        return this.conflictingCoordinates;
+    }
+    
+    public ArrayList<Coordinates> getOriginalNumberCoordinates() {
+        return this.originalNumbersCoordinates;
+    }
+    
+    /**
+    * Metodi lisää sijainnin valmiiksi annettujen numeroiden sijaintien 
+    * listalle
+    *
+    * @param   y   y-koordinaatti
+    * @param   x   x-koordinaatti
+    */
+    public void addOriginalNumberCoordinates(int y, int x) {
+        this.originalNumbersCoordinates.add(new Coordinates(y, x));
+    }
+    
+    /**
+    * Metodi tarkistaa, sijaitseeko y- ja x-koordinaatin määrittämässä
+    * kohdassa valmiiksi annettu numero
+    *
+    * @param   y   y-koordinaatti
+    * @param   x   x-koordinaatti
+    * 
+    * @return true, jos kohdassa on valmiiksi annettu numero, else muulloin
+    */
+    public boolean isOriginalNumberCoordinates(int y, int x) {
+        Coordinates c = new Coordinates(y, x);
+        if (this.originalNumbersCoordinates.contains(c)) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+    
     /**
     * Metodi asettaa annetun numeron matriisiin
     *
@@ -82,7 +106,7 @@ public class Sudoku {
     }
     
     /**
-    * Metodi lisää annetun numeron matriisiin muistiinpanona
+    * Metodi lisää annetun numeron matriisin muistiinpanoihin
     *
     * @param   y   y-koordinaatti
     * @param   x   x-koordinaatti
@@ -93,7 +117,7 @@ public class Sudoku {
     }
     
     /**
-    * Metodi rakentaa matriisin tietystä Square-oliosta saatavan
+    * Metodi rakentaa matriisin Square-oliosta saatavan
     * muistiinpanolistan merkkijonoksi
     *
     * @param   y   y-koordinaatti
@@ -123,17 +147,17 @@ public class Sudoku {
             return true;
         }
         this.conflictingCoordinates = new ArrayList<>();
-        boolean noMistake = true;
+        boolean result = true;
         if (!checkRow(y, x)) {
-            noMistake = false;
+            result = false;
         }
         if (!checkColumn(y, x)) {
-            noMistake = false;
+            result = false;
         }
         if (!checkBox(y, x)) {
-            noMistake = false;
+            result = false;
         }
-        return noMistake;
+        return result;
     }
     
     /**
@@ -194,16 +218,33 @@ public class Sudoku {
         return true;
     }
     
-    public ArrayList<Coordinates> getConflictingCoordinates() {
-        return this.conflictingCoordinates;
-    }
-    
+    /**
+    * Metodi tarkastaa, onko kaikissa ruuduissa nollasta poikkeava numero
+    * 
+    * @return true, jos sudoku on täytetty, false, jos jossakin ruudussa on nolla
+    */
     public boolean win() {
         for (int y = 0; y < 9; y++) {
             for (int x = 0; x < 9; x++) {
-                if (sudoku[y][x].getNumber() == 0) return false;
+                if (sudoku[y][x].getNumber() == 0) {
+                    return false;
+                }
             }
         }
         return true;
+    }
+    
+    /**
+    * Metodi poistaa korostuksen korostetuista ruuduista
+    *
+    */
+    public void unhighlight() {
+        for (int y = 0; y < 9; y++) {
+            for (int x = 0; x < 9; x++) {
+                if (sudoku[y][x].getNumber() == -2) {
+                    this.setNumberToSquare(y, x, 0);
+                }
+            }
+        }
     }
 }

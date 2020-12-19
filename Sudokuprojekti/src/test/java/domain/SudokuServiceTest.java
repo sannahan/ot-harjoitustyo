@@ -1,6 +1,7 @@
 package domain;
 
-import Sudokuprojekti.domain.*;
+import sudokuprojekti.domain.Sudoku;
+import sudokuprojekti.domain.SudokuService;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;

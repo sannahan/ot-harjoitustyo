@@ -1,22 +1,16 @@
-package Sudokuprojekti.domain;
+package sudokuprojekti.domain;
 
 import java.util.ArrayList;
 
 /**
-* Luokka, joka kuvaa yhtä sudokun ruutua
+* Luokka, joka kuvaa yhtä ruutua sudokussa
 */
 public class Square {
-    /**
-    * Lista, joka sisältää ruudun muistiinpanot
-    */
-    public ArrayList<Integer> notation;
-    /**
-    * Numero, joka sudokuun on lisätty
-    */
-    public int number;
+    private ArrayList<Integer> notation;
+    private int number;
 
     /**
-    * Konstruktori luo uuden muistiinpanolistan ja asettaa numeroksi 0
+    * Konstruktori luo uuden listan muistiinpanoille ja asettaa numeroksi 0
     */
     public Square() {
         this.notation = new ArrayList<>();
@@ -33,7 +27,8 @@ public class Square {
     
     /**
     * Metodi tyhjentää muistiinpanot, jos käyttäjä painaa raksia
-    * ja lisää muistiinpanon, jos numeroa ei ole lisätty muistiinpanoihin aikaisemmin
+    * ja lisää muistiinpanon, jos numeroa ei ole lisätty muistiinpanoihin 
+    * aikaisemmin
     */
     public void setNotation(int n) {
         if (n == 0) {
