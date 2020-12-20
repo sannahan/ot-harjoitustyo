@@ -14,6 +14,8 @@ Sovelluksessa voi pelata sudokua. Sovellus toimii Helsingin yliopiston tietojenk
 
 [Käyttöohje](https://github.com/sannahan/ot-harjoitustyo/blob/master/dokumentaatio/kayttoohje.md)
 
+[Testausdokumentti](https://github.com/sannahan/ot-harjoitustyo/blob/master/dokumentaatio/testausdokumentti.md)
+
 ### Releaset
 
 [Viikko 5](https://github.com/sannahan/ot-harjoitustyo/releases)
