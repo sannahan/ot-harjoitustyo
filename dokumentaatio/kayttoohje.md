@@ -6,6 +6,8 @@ Voit valita haluamasi vaikeusasteen oikeasta valintapalkista. Sinulla on kolme v
 
 ![choosegame](https://github.com/sannahan/ot-harjoitustyo/blob/master/dokumentaatio/kuvat/choosegame.png)
 
+Jos olet tallentanut tiedostoon omia sudokuja tai keskeneräisen ratkaisun, voit valita sudokun 25 sudokun valintapalkista jatkaaksesi sen ratkaisua. Jos haluat tyhjän pohjan uutta sudokua varten, aloita valitsemalla 25 sudokun valintapalkista tyhjä sudokupohja. 
+
 ## Numeron lisääminen ruutuun
 
 Kun haluat lisätä sudokuun ison numeron, valitse oikeasta valintapalkista "Big" ja haluamasi numero. Klikkaa sitten sitä sudokun ruutua, johon haluat lisätä numeron. 
