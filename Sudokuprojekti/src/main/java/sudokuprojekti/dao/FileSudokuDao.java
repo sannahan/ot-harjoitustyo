@@ -6,18 +6,23 @@ import java.io.FileWriter;
 import java.util.*;
 
 /**
-* Luokka, joka lukee tiedostosta aloitusnumerot
+* Luokka, joka lukee ja kirjottaa tiedostoon
 */
 public class FileSudokuDao {
+    private String filename;
+    
+    public FileSudokuDao(String file) {
+        this.filename = file;
+    }
+    
     /**
-    * Metodi, joka lukee valitusta tiedostosta numeroita
+    * Metodi, joka lukee tiedostosta sudokun isot numerot
     * 
-    * @param   filename   käyttäjän valitsema tiedosto
-    * @param   chosen   käyttäjän valitsema sudoku
+    * @param   chosen   valittu sudoku
     * 
     * @return 9x9 matriisi, joka sisältää aloitusnumerot
     */
-    public int[][] readValues(String filename, int chosen) {
+    public int[][] readValues(int chosen) {
         int[][] sudokuValues = new int[9][9];
         try (Scanner reader = new Scanner(new File(filename))) {
             while (reader.hasNextLine()) {
@@ -38,8 +43,14 @@ public class FileSudokuDao {
         }
     }
     
-    // keksi tälle järkevämpi ratkaisu, jottei tule copypastea
-    public String[][] readNotation(String filename, int chosen) {
+    /**
+     * Metodi, joka lukee tiedostosta sudokun muistiinpanot
+     * 
+     * @param chosen Valittu sudoku
+     * 
+     * @return 9x9 matriisi, joka sisältää muistiinpanot merkkijonoina
+     */
+    public String[][] readNotation(int chosen) {
         String[][] sudokuNotations = new String[9][9];
         try (Scanner reader = new Scanner(new File(filename))) {
             while (reader.hasNextLine()) {
@@ -60,17 +71,38 @@ public class FileSudokuDao {
         }
     }
     
-    public void save(String filename, Square[][] sudoku, int index) {
+    /**
+     * Metodi, joka tallentaa sudokun tiedostoon
+     * 
+     * @param sudoku sudokumatriisi
+     * @param index valittu sudoku
+     * 
+     * @return true, jos tallennus onnistuu, false, jos ei 
+     */
+    public boolean save(Square[][] sudoku, int index) {
+        boolean successful = false;
         try (FileWriter writer = new FileWriter(filename, true)) {
             String numbersString = createWritableLine(sudoku, index, false);
             String notationString = createWritableLine(sudoku, index, true);
             writer.write(numbersString + "\n");
             writer.write(notationString + "\n");
+            successful = true;
         } catch (Exception e) {
-            System.out.println("Tiedostoon ei voitu kirjoittaa!");
+            successful = false;
         }
+        return successful;
     }
     
+    /**
+     * Metodi, joka muokkaa sudokun sisällön merkkojonoksi, joka 
+     * voidaan kirjottaa tiedostoon
+     * 
+     * @param sudoku sudokumatriisi
+     * @param index valittu sudoku
+     * @param notation muistiinpano / varsinainen numero
+     * 
+     * @return sudokun sisältö merkkijonona 
+     */
     public String createWritableLine(Square[][] sudoku, int index, boolean notation) {
         StringBuilder sb = new StringBuilder();
         sb.append(index + ";");
@@ -99,12 +131,19 @@ public class FileSudokuDao {
         return sb.toString();
     }
     
-    public boolean isSudokuInMemory(String filename, int x) {
+    /**
+     * Metodi tarkistaa, löytyykö sudokupohjaa tiedostosta
+     * 
+     * @param x valittu sudoku
+     * 
+     * @return true, jos sudoku löytyy tiedostosta, false, jos ei
+     */
+    public boolean isSudokuInMemory(int x) {
         boolean found = false;
         try (Scanner s = new Scanner(new File(filename))) {
             while (s.hasNextLine()) {
                 String[] parts = s.nextLine().split(";");
-                if (parts[0].equals(String.valueOf(x+3))) {
+                if (parts[0].equals(String.valueOf(x))) {
                     found = true;
                     break;
                 }

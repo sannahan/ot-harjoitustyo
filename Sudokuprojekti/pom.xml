@@ -36,7 +36,7 @@
                 <version>0.8.3</version>
                 <configuration>
                     <excludes>
-                        <exclude>sudokuprojekti.ui*</exclude>
+                        <exclude>sudokuprojekti/ui/*</exclude>
                     </excludes>
                 </configuration>
                 <executions>

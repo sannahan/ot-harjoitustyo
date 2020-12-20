@@ -28,7 +28,7 @@ public class Sudoku {
         this.originalNumbersCoordinates = new ArrayList<>();
     }
     
-    public Square[][] getSudoku() {
+    public Square[][] getSudokuMatrix() {
         return this.sudoku;
     }
 
@@ -88,8 +88,7 @@ public class Sudoku {
         Coordinates c = new Coordinates(y, x);
         if (this.originalNumbersCoordinates.contains(c)) {
             return true;
-        }
-        else {
+        } else {
             return false;
         }
     }

@@ -42,8 +42,8 @@ public class SudokuTest {
     }
     
     @Test
-    public void getNotationFromSquareReturnsCorrectString() {
-        int arraySize = s.getSudoku()[1][1].getNotation().size();
+    public void getNotationFromSquareReturnsCorrectSizedString() {
+        int arraySize = s.getSudokuMatrix()[1][1].getNotation().size();
         int stringSize = s.getNotationFromSquare(1, 1).length();
         assertEquals(arraySize, stringSize);    
     }
@@ -103,7 +103,31 @@ public class SudokuTest {
     
     @Test
     public void constructorCreatesAMatrix() {
-        Square[][] sudoku = s.getSudoku();
+        Square[][] sudoku = s.getSudokuMatrix();
         assertEquals(9, sudoku[0].length);
+    }
+    
+    @Test
+    public void unHighlightRemovesAllHighLightMarkings() {
+        s.setNumberToSquare(7, 7, -2);
+        s.unhighlight();
+        assertEquals(0, s.getSudokuMatrix()[7][7].getNumber());
+    }
+    
+    @Test
+    public void winReturnsFalseIfSomeNumbersAreZero() {
+        assertFalse(s.win());
+    }
+    
+    @Test
+    public void isOriginalNumberCoordinatesReturnsTrueIfCoordinatesAreFound() {
+        s.addOriginalNumberCoordinates(0, 0);
+        s.addOriginalNumberCoordinates(1, 0);
+        assertTrue(s.isOriginalNumberCoordinates(1, 0));
+    }
+    
+    @Test
+    public void isOriginalNumberCoordinatesReturnsFalseIfCoordinatesAreNotFound() {
+        assertFalse(s.isOriginalNumberCoordinates(1, 1));
     }
 }
