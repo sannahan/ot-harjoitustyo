@@ -5,24 +5,28 @@
 Sovelluksessa voi pelata sudokua. Sovellus toimii Helsingin yliopiston tietojenkäsittelytieteen kurssin Ohjelmistotekniikka harjoitussovelluksena.
 
 ###  Dokumentaatio
-[alustava määrittelydokumentti](https://github.com/sannahan/ot-harjoitustyo/blob/master/dokumentaatio/vaatimusmaarittely.md)
 
-[työaikakirjanpito](https://github.com/sannahan/ot-harjoitustyo/blob/master/dokumentaatio/tyoaikakirjanpito.md)
+[Määrittelydokumentti](https://github.com/sannahan/ot-harjoitustyo/blob/master/dokumentaatio/vaatimusmaarittely.md)
 
-[arkkitehtuuri](https://github.com/sannahan/ot-harjoitustyo/blob/master/dokumentaatio/arkkitehtuuri.md)
+[Työaikakirjanpito](https://github.com/sannahan/ot-harjoitustyo/blob/master/dokumentaatio/tyoaikakirjanpito.md)
 
-[käyttöohje](https://github.com/sannahan/ot-harjoitustyo/blob/master/dokumentaatio/kayttoohje.md)
+[Arkkitehtuuri](https://github.com/sannahan/ot-harjoitustyo/blob/master/dokumentaatio/arkkitehtuuri.md)
+
+[Käyttöohje](https://github.com/sannahan/ot-harjoitustyo/blob/master/dokumentaatio/kayttoohje.md)
+
 ### Releaset
 
 [Viikko 5](https://github.com/sannahan/ot-harjoitustyo/releases)
 
 [Viikko 6](https://github.com/sannahan/ot-harjoitustyo/releases/tag/viikko6)
 
+[Loppupalautus](https://github.com/sannahan/ot-harjoitustyo/releases/tag/Loppupalautus)
+
 ### Komentorivitoiminnot
 
 Projekti suoritetaan komennolla
 
-	mvn compile exec:java -Dexec.mainClass=Sudokuprojekti.ui.Main
+	mvn compile exec:java -Dexec.mainClass=sudokuprojekti.ui.Main
 
 
 #### Testit

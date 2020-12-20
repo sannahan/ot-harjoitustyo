@@ -16,7 +16,7 @@ Ohjelma käynnistetään komennolla java -jar Sudokuprojekti.jar
 
 Voit valita haluamasi vaikeusasteen oikeasta valintapalkista. Sinulla on kolme vaihtoehtoa: helppo, keskivaikea ja vaikea sudoku. Saat pelin näkyviin klikkaamalla sopivaa vaikeusastetta.
 
-![choosegame](https://github.com/sannahan/ot-harjoitustyo/blob/master/dokumentaatio/kuvat/choosegame.png)
+![choosegame](https://github.com/sannahan/ot-harjoitustyo/blob/master/dokumentaatio/kuvat/kaytto1.png)
 
 Jos olet tallentanut tiedostoon omia sudokuja tai keskeneräisen ratkaisun, voit valita sudokun 25 sudokun valintapalkista jatkaaksesi sen ratkaisua. Jos haluat tyhjän pohjan uutta sudokua varten, aloita valitsemalla 25 sudokun valintapalkista tyhjä sudokupohja. 
 
@@ -28,7 +28,7 @@ Kun haluat lisätä sudokuun ison numeron, valitse oikeasta valintapalkista "Big
 
 Jos lisäät sudokuun numeron, joka sotii sen sääntöjä vastaan, sovellus merkitsee virheen aiheuttavat numerot punaisella värillä. Sudokussa ei saa olla kahta samaa numeroa samalla rivillä, samassa sarakkeessa tai 3x3 ruudukossa.
 
-![showmistake](https://github.com/sannahan/ot-harjoitustyo/blob/master/dokumentaatio/kuvat/showmistake.png)
+![showmistake](https://github.com/sannahan/ot-harjoitustyo/blob/master/dokumentaatio/kuvat/kaytto2.png)
 
 ## Muistiinpanon lisääminen ruutuun
 
@@ -37,3 +37,9 @@ Jos haluat lisätä sudokuun muistiinpanoja mahdollisista numeroista, valitse oi
 ## Numeron tai muistiinpanon poistaminen
 
 Jos teet virheen, voit poistaa numeron tai muistiinpanon valitsemalla oikeasta sivupalkista raksin ja klikkaamalla sitä kohtaa sudokussa, missä virhe esiintyy.
+
+## Sudokun tallentaminen
+
+Voit tallentaa sovellukseen oman sudokupohjan esimerkiksi sanomalehdestä. Valitse 25 sudokun valintapalkista tyhjä sudokupohja, lisää siihen haluamasi numerot ja klikkaa "Save".
+
+![createyourownsudoku](https://github.com/sannahan/ot-harjoitustyo/blob/master/dokumentaatio/kuvat/kaytto3.png)
