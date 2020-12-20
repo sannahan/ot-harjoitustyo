@@ -1,5 +1,17 @@
 # Käyttöohje
 
+## Käyttöönotto
+
+Lataa tiedosto [Sudokuprojekti.jar](https://github.com/sannahan/ot-harjoitustyo/releases/tag/Loppupalautus).
+
+Sovelluksen juuresta tulee löytyä lisäksi tiedostot
+sudokufile.txt
+testfile.txt (tyhjä tiedosto, joka tulee luoda itse)
+black.png
+config.properties
+
+Ohjelma käynnistetään komennolla java -jar Sudokuprojekti.jar
+
 ## Sudokun valinta
 
 Voit valita haluamasi vaikeusasteen oikeasta valintapalkista. Sinulla on kolme vaihtoehtoa: helppo, keskivaikea ja vaikea sudoku. Saat pelin näkyviin klikkaamalla sopivaa vaikeusastetta.
